@@ -35,8 +35,10 @@ frequentation_file = pd.read_csv("./data/frequentation-gares.csv", sep=";")
 frequentation_columns = [
   "Nom de la gare",
   "Code postal",
-  "Total Voyageurs + Non voyageurs 2017",
-  "Total Voyageurs + Non voyageurs 2018"
+  "Total Voyageurs + Non voyageurs 2020",
+  "Total Voyageurs + Non voyageurs 2021",
+  "Total Voyageurs + Non voyageurs 2022",
+  "Total Voyageurs + Non voyageurs 2023"
   ]
 frequentation_filtered_columns = get_interesting_columns(frequentation_file, frequentation_columns)
 frequentation_filtered_rows = frequentation_filtered_columns[
@@ -50,8 +52,10 @@ frequentation = frequentation_filtered_rows
 def get_frequentation_diagram(frequentation):
   frequentation_df = pd.DataFrame(frequentation)
   frequentation_df.set_index('Nom de la gare') [
-    ['Total Voyageurs + Non voyageurs 2017',
-     'Total Voyageurs + Non voyageurs 2018']].plot(kind='bar', figsize=(12, 6))
+    ["Total Voyageurs + Non voyageurs 2020",
+     "Total Voyageurs + Non voyageurs 2021",
+     "Total Voyageurs + Non voyageurs 2022",
+     "Total Voyageurs + Non voyageurs 2023"]].plot(kind='bar', figsize=(12, 6))
   plt.title('Comparaison fréquentation des gares entre 2017 et 2018')
   plt.ylabel('Total voyageurs')
   plt.xlabel('Nom de la gare')
@@ -63,14 +67,14 @@ def get_frequentation_diagram(frequentation):
 # ****************************************
 # Display
 
-print("WORK TIME")
-print(work_time)
-print("\n\n\n")
+# print("WORK TIME")
+# print(work_time)
+# print("\n\n\n")
 
 print("FREQUENTATION")
 print(frequentation)
 print("\n\n\n")
 
-print("FREQUENTATION PRETTY DATA")
+# print("FREQUENTATION PRETTY DATA")
 
 # get_frequentation_diagram(frequentation)
