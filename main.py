@@ -24,7 +24,11 @@ work_time_columns = [
   "Temps annuel de travail (SNCF)",
   "Temps annuel de travail (France)"  
   ]
-work_time = get_interesting_columns(work_time_file, work_time_columns)
+work_time_filtered_columns = get_interesting_columns(work_time_file, work_time_columns)
+work_time_filtered_rows = work_time_filtered_columns[
+  (work_time_filtered_columns['Date'].astype(str) == '2017') | (work_time_filtered_columns['Date'].astype(str) == '2018')
+  ]
+work_time = work_time_filtered_rows
 
 frequentation_file = pd.read_csv("./data/frequentation-gares.csv", sep=";")
 frequentation_columns = [
@@ -33,8 +37,14 @@ frequentation_columns = [
   "Total Voyageurs + Non voyageurs 2017",
   "Total Voyageurs + Non voyageurs 2018"
   ]
-frequentation = get_interesting_columns(frequentation_file, frequentation_columns)
+frequentation_filtered_columns = get_interesting_columns(frequentation_file, frequentation_columns)
+frequentation_filtered_rows = frequentation_filtered_columns[
+  frequentation_filtered_columns[
+    'Code postal'
+  ].astype(str).str[:1] == '7'].head(3)
+frequentation = frequentation_filtered_rows
 
 
 print(work_time)
+print("\n\n\n")
 print(frequentation)
